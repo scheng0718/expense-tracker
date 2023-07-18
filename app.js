@@ -17,6 +17,7 @@ db.once('open', () => {
 const port = 3000
 app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs'}))
 app.set('view engine', 'hbs')
+app.use(express.static('public'))
 app.use('/', (req, res) => {
   res.render('index')
 })
