@@ -23,7 +23,7 @@ const recordSchema = new Schema ({
     index: true,
     required: true
   },
-  category: {
+  categoryId: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
     index: true,
