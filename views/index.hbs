@@ -14,21 +14,23 @@
           <li><a class="dropdown-item" href="/sort/other">其他</a></li>
         </ul>
       </div>
-      <h2 class="total-amount mb-4 text-center">總金額：<span class="badge bg-secondary text-light">25260</span></h2>
+      <h2 class="total-amount mb-4 text-center">總金額：<span class="badge bg-secondary text-light">{{ totalAmount }}</span></h2>
+      {{#each records }}
       <div class="expense-detail d-flex justify-content-between align-items-center bg-light p-3 rounded mb-3">
         <div class="d-flex align-items-center">
-          <i class="fa-solid fa-house"></i>
+          {{{ this.categoryIcon}}}
           <div class="content mx-3">
-            <div class="name fs-3 fw-bold">午餐</div>
-            <div class="date fs-6">2019.04.23</div>
+            <div class="name fs-3 fw-bold">{{ this.name }}</div>
+            <div class="date fs-6">{{ this.date }}</div>
           </div>
         </div>
         <div class="d-flex align-items-center">
-          <div class="amount text-warning fs-4 mx-3">60</div>
-          <a href="/expense/edit" class="btn btn-warning mx-2">修改</a>
-          <a href="/expense/delete" class="btn btn-danger mx-2">刪除</a>
+          <div class="amount text-warning fs-4 mx-3">{{ this.amount }}</div>
+          <a href="/expenses/edit" class="btn btn-warning mx-2">修改</a>
+          <a href="/expenses/delete" class="btn btn-danger mx-2">刪除</a>
         </div>
       </div>
+      {{/each}}
       <div class="d-grid gap-2 col-6 mx-auto my-5">
         <a class="btn btn-outline-info" href="/expenses/new" role="button">新增支出</a>
       </div>

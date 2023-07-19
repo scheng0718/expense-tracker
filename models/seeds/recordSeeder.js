@@ -72,12 +72,17 @@ db.once('open', async() => {
   }))
   .then(async users => {
     const category = await Category.find().lean()
-    const updatedRecordSeeder = SEED_RECORD.map(record => ({
-      ...record,
-      userId: users[Math.floor(Math.random() * users.length)]._id,
-      categoryId: category[Math.floor(Math.random() * category.length)]._id
-    }))
-    await Record.insertMany(updatedRecordSeeder)
+    SEED_RECORD[0].userId = users[0]._id
+    SEED_RECORD[0].categoryId = category[3]._id
+    SEED_RECORD[1].userId = users[0]._id
+    SEED_RECORD[1].categoryId = category[3]._id
+    SEED_RECORD[2].userId = users[0]._id
+    SEED_RECORD[2].categoryId = category[1]._id
+    SEED_RECORD[3].userId = users[1]._id
+    SEED_RECORD[3].categoryId = category[2]._id
+    SEED_RECORD[4].userId = users[0]._id
+    SEED_RECORD[4].categoryId = category[0]._id
+    await Record.insertMany(SEED_RECORD)
   })
   .then(() => {
     console.log('Record data done!')
