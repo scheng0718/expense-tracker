@@ -3,6 +3,7 @@ const { engine }  = require('express-handlebars')
 const mongoose = require('mongoose')
 const Record = require('./models/record')
 const Category = require('./models/category')
+const User = require('./models/user')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -20,7 +21,8 @@ const port = 3000
 app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs'}))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
-app.use('/', (req, res) => {
+app.use(express.urlencoded({ extended: true }))
+app.get('/', (req, res) => {
   // 載入 icon 圖檔
   const CATEGORY = {
     家居物業: '<i class="fa-solid fa-house fa-lg"></i>',
@@ -50,7 +52,30 @@ app.use('/', (req, res) => {
       res.render('index', { records, totalAmount })
     })
 })
-
+app.get('/expenses/new', (req, res) => {
+  res.render('new')
+})
+app.post('/expenses', async (req, res) => {
+  try {
+    const { name, date, category, amount } = req.body
+    const categoryDoc = await Category.findOne({ name: category })
+    const userId = await User.create({
+      name: 'test',
+      email: 'test@example.com',
+      password: '12345'
+    })
+    Record.create({
+      name,
+      date,
+      amount,
+      userId: userId._id,
+      categoryId: categoryDoc._id
+    })
+    res.redirect('/')
+  } catch (error) {
+    console.log(error)
+  }
+})
 app.listen(port, () => {
   console.log(`The server is running at http://localhost:${port}`)
 })

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const recordSchema = new Schema ({
   id: {
     type: Number,
-    required: true
+    // required: true
   },
   name: {
     type: String,
