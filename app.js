@@ -159,6 +159,20 @@ app.put('/expenses/:id', async (req, res) => {
   //   console.log(error)
   // }  
 })
+app.delete('/expenses/:id', async (req, res) => {
+  const _id = req.params.id
+  Record.findByIdAndDelete({_id})
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+  // async/ await  
+  // try {
+  //   const _id = req.params.id
+  //   await Record.findByIdAndDelete({_id})
+  //   res.redirect('/')
+  // } catch (error) {
+  //   console.log(error)
+  // }
+})
 app.listen(port, () => {
   console.log(`The server is running at http://localhost:${port}`)
 })
