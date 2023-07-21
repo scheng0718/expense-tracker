@@ -7,18 +7,18 @@
           類別
         </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="/sort/household">家居物業</a></li>
-          <li><a class="dropdown-item" href="/sort/transportation">交通出行</a></li>
-          <li><a class="dropdown-item" href="/sort/entertainment">休閒娛樂</a></li>
-          <li><a class="dropdown-item" href="/sort/food">餐飲食品</a></li>
-          <li><a class="dropdown-item" href="/sort/other">其他</a></li>
+          <li><a class="dropdown-item" href="/query/家居物業">家居物業</a></li>
+          <li><a class="dropdown-item" href="/query/交通出行">交通出行</a></li>
+          <li><a class="dropdown-item" href="/query/休閒娛樂">休閒娛樂</a></li>
+          <li><a class="dropdown-item" href="/query/餐飲食品">餐飲食品</a></li>
+          <li><a class="dropdown-item" href="/query/其他">其他</a></li>
         </ul>
       </div>
       <h2 class="total-amount mb-4 text-center">總金額：<span class="badge bg-secondary text-light">{{ totalAmount }}</span></h2>
       {{#each records }}
       <div class="expense-detail d-flex justify-content-between align-items-center bg-light p-3 rounded mb-3">
         <div class="d-flex align-items-center">
-          {{{ this.categoryIcon}}}
+          {{{ this.categoryIcon }}}
           <div class="content mx-3">
             <div class="name fs-3 fw-bold">{{ this.name }}</div>
             <div class="date fs-6">{{ this.date }}</div>
