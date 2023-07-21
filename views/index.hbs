@@ -4,18 +4,18 @@
       <div class="dropdown my-5">
         <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton2"
           data-bs-toggle="dropdown" aria-expanded="false" style="width:600px;">
-          類別
+          Category
         </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="/">全部</a></li>
-          <li><a class="dropdown-item" href="/query/家居物業">家居物業</a></li>
-          <li><a class="dropdown-item" href="/query/交通出行">交通出行</a></li>
-          <li><a class="dropdown-item" href="/query/休閒娛樂">休閒娛樂</a></li>
-          <li><a class="dropdown-item" href="/query/餐飲食品">餐飲食品</a></li>
-          <li><a class="dropdown-item" href="/query/其他">其他</a></li>
+          <li><a class="dropdown-item" href="/">All</a></li>
+          <li><a class="dropdown-item" href="/query/Household">Household</a></li>
+          <li><a class="dropdown-item" href="/query/Transportation">Transportation</a></li>
+          <li><a class="dropdown-item" href="/query/Entertainment">Entertainment</a></li>
+          <li><a class="dropdown-item" href="/query/Food">Food</a></li>
+          <li><a class="dropdown-item" href="/query/Other">Other</a></li>
         </ul>
       </div>
-      <h2 class="total-amount mb-4 text-center">總金額：<span class="badge bg-secondary text-light">{{ totalAmount }}</span></h2>
+      <h2 class="total-amount mb-4 text-center">Total: <span class="badge bg-secondary text-light">{{ totalAmount }}</span></h2>
       {{#each records }}
       <div class="expense-detail d-flex justify-content-between align-items-center bg-light p-3 rounded mb-3">
         <div class="d-flex align-items-center">
@@ -27,15 +27,15 @@
         </div>
         <div class="d-flex align-items-center">
           <div class="amount text-warning fs-4 mx-3">{{ this.amount }}</div>
-          <a href="/expenses/{{ this._id }}/edit" role="button" class="btn btn-warning mx-2">修改</a>
+          <a href="/expenses/{{ this._id }}/edit" role="button" class="btn btn-warning mx-2">Edit</a>
           <form method="POST" action="/expenses/{{ this._id }}?_method=DELETE" id="form">
-            <button id="submit" class="btn btn-danger" type="submit">刪除</button>
+            <button id="submit" class="btn btn-danger" type="submit">Delete</button>
           </form>
         </div>
       </div>
       {{/each}}
       <div class="d-grid gap-2 col-6 mx-auto my-5">
-        <a class="btn btn-outline-info" href="/expenses/new" role="button">新增支出</a>
+        <a class="btn btn-outline-info" href="/expenses/new" role="button">Create</a>
       </div>
     </div>
   </div>

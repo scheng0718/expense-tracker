@@ -3,11 +3,11 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 
-// 取得新增支出表單頁面
+// get create page
 router.get('/new', (req, res) => {
   res.render('new')
 })
-// 送出新增支出表單內容
+// submit create page
 router.post('/', async (req, res) => {
   const { name, date, category, amount } = req.body
   const userId = req.user._id
@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
     res.redirect('/')
   })
   .catch(error => console.log(error))
-  // await/async 風格
+  // await/async style
   // try {
   //   const { name, date, category, amount } = req.body
   //   const categoryDoc = await Category.findOne({ name: category })
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
   //   console.log(error)
   // }
 })
-// 取得編輯支出費用頁面
+// get a page for editing one expense
 router.get('/:id/edit', async(req, res) => {
   const _id = req.params.id
   const userId = req.user._id
@@ -62,7 +62,7 @@ router.get('/:id/edit', async(req, res) => {
     res.render('edit', {record, categoryOptions})
   })
   .catch(error => console.log(error))
-  // await/async的寫法
+  // await/async style
   // try{
   //   const _id = req.params.id
   //   const userId = req.user._id
@@ -78,7 +78,7 @@ router.get('/:id/edit', async(req, res) => {
   //   console.log(error)
   // }
 })
-// 修改編輯表單內容
+// submit edit page
 router.put('/:id', async (req, res) => {
   const { name, date, category, amount } = req.body
   const _id = req.params.id
@@ -99,7 +99,7 @@ router.put('/:id', async (req, res) => {
     res.redirect('/')
   })
   .catch(error => console.log(error))
-  // aync/await
+  // aync/await style
   // try {
   //   const { name, date, category, amount } = req.body
   //   const _id = req.params.id
@@ -116,7 +116,7 @@ router.put('/:id', async (req, res) => {
   //   console.log(error)
   // }  
 })
-// 刪除特定支出費用
+// delete one expense
 router.delete('/:id', async (req, res) => {
   const _id = req.params.id
   const userId = req.user._id

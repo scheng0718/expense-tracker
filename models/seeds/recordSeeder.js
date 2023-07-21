@@ -5,39 +5,39 @@ const User = require('../user')
 const Category = require('../category')
 const SEED_USER = [
   {
-    name: '廣志',
+    name: 'Dad Wayne',
     email: 'user1@example.com',
     password: '1234abcd'
   },
   {
-    name: '小新',
+    name: 'Shin Wayne',
     email: 'user2@example.com',
     password: '1234abcd'
   }
 ]
 const SEED_RECORD = [
   {
-    name: '午餐',
+    name: 'Lunch',
     date: '2023.7.15',
     amount: 60
   },
   {
-    name: '晚餐',
+    name: 'Dinner',
     date: '2023.7.16',
     amount: 60
   },
   {
-    name: '捷運',
+    name: 'MRT',
     date: '2023.7.16',
     amount: 120
   },
   {
-    name: '電影：驚奇隊長',
+    name: 'Movie: Captain Marvel',
     date: '2023.7.18',
     amount: 220
   },
   {
-    name: '租金',
+    name: 'Rent',
     date: '2023.7.01',
     amount: 25000
   }

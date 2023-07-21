@@ -1,17 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
-const User = require('./users')
 
 // 首頁內容顯示所有支出費用
 router.get('/', (req, res) => {
   // 載入 icon 圖檔
   const CATEGORY = {
-    家居物業: '<i class="fa-solid fa-house fa-lg"></i>',
-    交通出行: '<i class="fa-solid fa-van-shuttle fa-lg"></i>',
-    休閒娛樂: '<i class="fa-solid fa-face-grin-beam fa-lg"></i>',
-    餐飲食品: '<i class="fa-solid fa-utensils fa-lg"></i>',
-    其他: '<i class="fa-solid fa-pen fa-lg"></i>'
+    Household: '<i class="fa-solid fa-house fa-lg"></i>',
+    Transportation: '<i class="fa-solid fa-van-shuttle fa-lg"></i>',
+    Entertainment: '<i class="fa-solid fa-face-grin-beam fa-lg"></i>',
+    Food: '<i class="fa-solid fa-utensils fa-lg"></i>',
+    Other: '<i class="fa-solid fa-pen fa-lg"></i>'
   }
   const userId = req.user._id
   // populate()可以將不同的表格關聯在一起

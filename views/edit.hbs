@@ -4,36 +4,36 @@
       <form method="POST" action="/expenses/{{ record._id }}?_method=PUT" id="form">
         <div class="row g-2 mb-3">
           <label for="name" class="col-md-4 col-form-label">
-            <strong>*必填欄位</strong>
+            <strong>*Required</strong>
           </label>
           <div class="col-md-8">
-            <h4 class="title text-center">請輸入你的支出</h4>
+            <h4 class="title text-center">Your expenses</h4>
           </div>
         </div>
-        {{!-- 輸入名稱 --}}
+        {{!-- Name --}}
         <div class="row g-2 mb-3">
           <label for="name" class="col-md-4 col-form-label">
-            名稱 *:
+            Name *:
           </label>
           <div class="col-md-8">
             <input type="text" name="name" class="form-control" id="name" value="{{ record.name }}" placeholder="" required>
             <div class="invalid-feedback"> This field is required.</div>
           </div>
         </div>
-        {{!-- 輸入日期 --}}
+        {{!-- Date --}}
         <div class="row g-2 mb-3">
           <label for="date" class="col-md-4 col-form-label">
-            日期 *:
+            Date *:
           </label>
           <div class="col-md-8">
             <input type="date" name="date" class="form-control" id="date" value="{{ record.date }}" required>
             <div class="invalid-feedback"> This field is required.</div>
           </div>
         </div>
-        {{!-- 輸入類別 --}}
+        {{!-- Category --}}
         <div class="row g-2 mb-3">
           <label for="category" class="col-md-4 col-form-label">
-            類別 *:
+            Category *:
           </label>
           <div class="col-md-8">
             <select name="category" class="form-control" id="category" required>
@@ -44,10 +44,10 @@
             <div class="invalid-feedback"> This field is required.</div>
           </div>
         </div>
-        {{!-- 輸入金額 --}}
+        {{!-- Amount --}}
         <div class="row g-2 mb-3">
           <label for="amount" class="col-md-4 col-form-label">
-            金額 *:
+            Amount *:
           </label>
           <div class="col-md-8">
             <input type="number" name="amount" class="form-control" id="amount" placeholder="" value="{{record.amount}}" required>
@@ -55,9 +55,8 @@
           </div>
         </div>
         <div class="text-center my-5">
-          <button id="submit" class="btn btn-success" type="submit">送出</button>
+          <button id="submit" class="btn btn-success" type="submit">Submit</button>
         </div>
-        {{!-- <a class=" ms-2 btn btn-outline-secondary" href="/" role="button">取消</a> --}}
       </form>
     </div>
   </div>

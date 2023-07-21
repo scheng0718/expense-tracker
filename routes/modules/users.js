@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
-const Record = require('../../models/record')
-const Category = require('../../models/category')
 const User = require('../../models/user')
 
 router.get('/register', (req, res) => {

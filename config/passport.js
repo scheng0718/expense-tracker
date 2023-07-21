@@ -6,12 +6,11 @@ const GitHubStrategy = require('passport-github2').Strategy
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
-module.exports = app => {
-  // 初始化 Passport 模組
-  app.use(passport.initialize())
-  app.use(passport.session())
-  // 設定本地登入策略
-  passport.use(new LocalStrategy({ 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: '.env' })
+}
+// local strategy
+const localStrategy = new LocalStrategy({ 
     usernameField: 'email',
     passReqToCallback: true,
   }, (req, email, password, done) => {
@@ -30,9 +29,9 @@ module.exports = app => {
         }) 
       })
       .catch(error => console.log(error))
-  }))
-  // Facebook Strategy
-  passport.use(new FacebookStrategy({
+  })
+// Facebook Strategy
+const facebookStrategy = new FacebookStrategy({
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
     callbackURL: process.env.FACEBOOK_CALLBACK,
@@ -57,9 +56,9 @@ module.exports = app => {
           .catch(error => done(error, false))
       })
       .catch(error => console.log(error))
-  }))
-  // Google Strategy
-  passport.use(new GoogleStrategy({
+  })
+// Google Strategy
+const googleStrategy = new GoogleStrategy({
       clientID: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK
@@ -82,9 +81,9 @@ module.exports = app => {
           .then(user => done(null, user))
           .catch(error => done(error, false))
       })
-  }))
-  // Github Strategy
-  passport.use(new GitHubStrategy({
+  })  
+// Github Strategy
+const gitHubStrategy = new GitHubStrategy({
       clientID: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
       callbackURL: process.env.GITHUB_CALLBACK
@@ -107,8 +106,18 @@ module.exports = app => {
           .then(user => done(null, user))
           .catch(error => done(error, false))
       })
-  }))
-  // 設定序列化與反序列化
+  })
+
+function usePassport(app) {
+  // initialize Passport modules
+  app.use(passport.initialize())
+  app.use(passport.session())
+  // log in strategies
+  passport.use(localStrategy)
+  passport.use(facebookStrategy)
+  passport.use(googleStrategy)
+  passport.use(gitHubStrategy)
+  // serialization and deserialization
   passport.serializeUser(function(user, done) {
     done(null, user._id)
   })
@@ -119,3 +128,5 @@ module.exports = app => {
       .catch(error => done(error, null))
   })
 }
+
+module.exports = usePassport

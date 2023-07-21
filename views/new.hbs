@@ -4,53 +4,53 @@
       <form method="POST" action="/expenses" id="form">
         <div class="row g-2 mb-3">
           <label for="name" class="col-md-4 col-form-label">
-            <strong>*必填欄位</strong>
+            <strong>*required</strong>
           </label>
           <div class="col-md-8">
-            <h4 class="title text-center">請輸入你的支出</h4>
+            <h4 class="title text-center">Your expenses</h4>
           </div>
         </div>
-        {{!-- 輸入名稱 --}}
+        {{!-- Name --}}
         <div class="row g-2 mb-3">
           <label for="name" class="col-md-4 col-form-label">
-            名稱 *:
+            Name *:
           </label>
           <div class="col-md-8">
-            <input type="text" name="name" class="form-control" id="name" placeholder="午餐.." required>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Lunch.." required>
             <div class="invalid-feedback"> This field is required.</div>
           </div>
         </div>
-        {{!-- 輸入日期 --}}
+        {{!-- Date --}}
         <div class="row g-2 mb-3">
           <label for="date" class="col-md-4 col-form-label">
-            日期 *:
+            Date *:
           </label>
           <div class="col-md-8">
             <input type="date" name="date" class="form-control" id="date" required>
             <div class="invalid-feedback"> This field is required.</div>
           </div>
         </div>
-        {{!-- 輸入類別 --}}
+        {{!-- Category --}}
         <div class="row g-2 mb-3">
           <label for="category" class="col-md-4 col-form-label">
-            類別 *:
+            Category *:
           </label>
           <div class="col-md-8">
             <select name="category" class="form-control" id="category" placeholder="Select" required>
-              <option>請選擇</option>
-              <option value="家居物業">家居物業</option>
-              <option value="交通出行">交通出行</option>
-              <option value="休閒娛樂">休閒娛樂</option>
-              <option value="餐飲食品">餐飲食品</option>
-              <option value="其他">其他</option>
+              <option>Please Select</option>
+              <option value="Household">Household</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Food">Food</option>
+              <option value="Other">Other</option>
             </select>
             <div class="invalid-feedback"> This field is required.</div>
           </div>
         </div>
-        {{!-- 輸入金額 --}}
+        {{!-- Amount --}}
         <div class="row g-2 mb-3">
           <label for="amount" class="col-md-4 col-form-label">
-            金額 *: 
+            Amount *: 
           </label>
           <div class="col-md-8">
             <input type="number" name="amount" class="form-control" id="amount" placeholder="100.." required>
@@ -58,9 +58,9 @@
           </div>
         </div>
         <div class="text-center my-5">
-          <button id="submit" class="btn btn-success" type="submit">新增支出</button>
+          <button id="submit" class="btn btn-success" type="submit">Create</button>
+          <a class=" ms-2 btn btn-outline-secondary" href="/" role="button">Cancel</a>
         </div>
-        {{!-- <a class=" ms-2 btn btn-outline-secondary" href="/" role="button">取消</a> --}}
       </form>
     </div>
   </div>
