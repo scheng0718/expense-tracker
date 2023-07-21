@@ -6,7 +6,7 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const usePassport = require('./config/passport')
 const router = require('./routes')
-const port = 3000
+const port = process.env.PORT
 require('./config/mongoose')
 
 app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs'}))
