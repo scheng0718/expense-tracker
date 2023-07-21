@@ -12,11 +12,27 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
+  const errors = []
+  if (!name || !email || !password || !confirmPassword) {
+    errors.push({ message: 'All fields are required.'})
+  }
+  if (password !== confirmPassword) {
+    errors.push({ message: 'Password and Confirm Password are not matched.'})
+  }
+  if (errors.length) {
+    return res.render('register', {
+      errors,
+      name,
+      email,
+      password,
+      confirmPassword
+    })
+  }
   User.findOne({ email })
     .lean()
     .then(user => {
       if (user) {
-        console.log('User has been registered!')
+        errors.push({ message: 'Email address has been registered!'})
         return res.render('register', {
           name,
           email,
@@ -32,24 +48,31 @@ router.post('/register', (req, res) => {
             email,
             password: hash
           })
-            .then(() => res.redirect('/'))
+            .then(() => {
+              req.flash('success_msg', 'Your account is created. Please sign in.')
+              res.redirect('/users/login')
+            })
             .catch(error => console.log(error)))   
     })
     .catch(error => console.log(error))
 })
 
 router.get('/login', (req, res) => {
-  res.render('login')
+  res.render('login', { emailInput: req.flash('emailInput')})
 })
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: 'users/login'
+  failureRedirect: '/users/login',
+  failureFlash: true
 }))
 
 router.get('/logout', function(req, res, next){
   req.logout(function(err) {
-    if (err) { return next(err) }
+    if (err) { 
+      return next(err) 
+    }
+    req.flash('success_msg', 'You have signed out successfully!')
     res.redirect('/users/login')
   })
 })
