@@ -3,6 +3,7 @@ const { engine }  = require('express-handlebars')
 const app = express()
 const methodOverride = require('method-override')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 const router = require('./routes')
 require('./config/mongoose')
 const port = 3000
@@ -17,6 +18,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+usePassport(app)
 app.use(router)
 
 app.listen(port, () => {
