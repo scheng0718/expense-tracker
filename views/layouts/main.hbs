@@ -20,14 +20,8 @@
           {{!-- insert images --}}
           {{!-- <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
             width="30" height="30" class="d-inline-block align-top" alt="My expense tracker"> --}}
-          {{#if isAuthenticated}}
-          {{#if user.name}}
-          {{ user.name }}'s
-          {{else}}
-          My
-          {{/if}}
-          {{else}}
-          My
+          {{#if isAuthenticated }}
+            {{ user.name }}'s
           {{/if}}
           Expense
         </a>
