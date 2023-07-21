@@ -5,13 +5,11 @@ const User = require('../user')
 const Category = require('../category')
 const SEED_USER = [
   {
-    id: 1,
     name: '廣志',
     email: 'user1@example.com',
     password: '1234abcd'
   },
   {
-    id: 2,
     name: '小新',
     email: 'user2@example.com',
     password: '1234abcd'
@@ -19,31 +17,26 @@ const SEED_USER = [
 ]
 const SEED_RECORD = [
   {
-    id: 1,
     name: '午餐',
     date: '2023.7.15',
     amount: 60
   },
   {
-    id: 2,
     name: '晚餐',
     date: '2023.7.16',
     amount: 60
   },
   {
-    id: 3,
     name: '捷運',
     date: '2023.7.16',
     amount: 120
   },
   {
-    id: 4,
     name: '電影：驚奇隊長',
     date: '2023.7.18',
     amount: 220
   },
   {
-    id: 5,
     name: '租金',
     date: '2023.7.01',
     amount: 25000
@@ -56,7 +49,6 @@ db.once('open', async() => {
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(user.password, salt)
     return User.create({
-      id: user.id,
       name: user.name,
       email: user.email,
       password: hash

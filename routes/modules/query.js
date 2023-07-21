@@ -12,11 +12,12 @@ router.get('/:category', async (req, res) => {
     餐飲食品: '<i class="fa-solid fa-utensils fa-lg"></i>',
     其他: '<i class="fa-solid fa-pen fa-lg"></i>'
   }
+  const userId = req.user._id
   let totalAmount = 0
   // Promise 風格
-  Category.findOne({name: req.params.category}).lean()
+  Category.findOne({ name: req.params.category}).lean()
     .then(category => {
-      return Record.find({categoryId: category._id})
+      return Record.find({categoryId: category._id, userId})
         .populate('categoryId')
         .lean()
         .then(records => records.map(record => {
@@ -35,7 +36,7 @@ router.get('/:category', async (req, res) => {
   //   console.log(req.params.category)
   //   // 找到 category 表中對應的資料
   //   const category = await Category.findOne({ name: req.params.category }).lean()
-  //   let records = await Record.find({ categoryId: category._id }).populate('categoryId').lean()
+  //   let records = await Record.find({ categoryId: category._id, userId }).populate('categoryId').lean()
   //   let totalAmount = 0
   //   records = records.map(record => {
   //     record.date = record.date.toISOString().split('T')[0]

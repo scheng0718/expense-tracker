@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
+const User = require('./users')
 
 // 首頁內容顯示所有支出費用
 router.get('/', (req, res) => {
@@ -12,9 +13,10 @@ router.get('/', (req, res) => {
     餐飲食品: '<i class="fa-solid fa-utensils fa-lg"></i>',
     其他: '<i class="fa-solid fa-pen fa-lg"></i>'
   }
+  const userId = req.user._id
   // populate()可以將不同的表格關聯在一起
   // populate('原表格的關聯屬性名稱','查詢外部表格的屬性名稱'(optional)) 
-  Record.find()
+  Record.find({ userId })
     .populate('categoryId','name')
     .lean()
     .then(records => {
