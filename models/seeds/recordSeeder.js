@@ -1,5 +1,5 @@
+const db = require('../../config/mongoose')
 const bcrypt = require('bcryptjs')
-const mongoose = require('mongoose')
 const Record = require('../record')
 const User = require('../user')
 const Category = require('../category')
@@ -50,14 +50,6 @@ const SEED_RECORD = [
   }
 ]
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-mongoose.connect(process.env.MONGODB_URI)
-const db = mongoose.connection
-db.on('error', () => {
-  console.log('mongodb error!')
-})
 db.once('open', async() => {
   console.log('mongodb connected!')
   Promise.all(SEED_USER.map(async user => {
